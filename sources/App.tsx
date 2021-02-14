@@ -7,7 +7,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import MessageListener from './helpers/messaging-and-notification'
 
 import StackNavigator from './navigators/stack-navigator'
-import NotificationActions from './helpers/notification-actions'
+import { OnNotificationTap } from './references/notification-actions'
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
 
       <MessageListener
         onGetToken = {token => console.log(`Token ${Platform.OS}: ${token}`)}
-        onNotification = {notificationData => NotificationActions(notificationData)}
+        onNotification = {notificationData => OnNotificationTap(notificationData)}
       />
 
       <Toast
