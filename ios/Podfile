@@ -7,18 +7,4 @@ target 'react_native_starter' do
   config = use_native_modules!
 
   use_react_native!(:path => config["reactNativePath"])
-
-  target 'react_native_starterTests' do
-    inherit! :complete
-    # Pods for testing
-  end
-end
-
-target 'react_native_starter-tvOS' do
-  # Pods for react_native_starter-tvOS
-
-  target 'react_native_starter-tvOSTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
 end
