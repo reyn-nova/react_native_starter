@@ -24,6 +24,9 @@ function StackNavigator() {
       <Stack.Screen
         name = 'AnotherScreen'
         component = {AnotherScreen}
+        options = {{
+          ...TransitionPresets.RevealFromBottomAndroid
+        }}
       />
     </Stack.Navigator>
   )
