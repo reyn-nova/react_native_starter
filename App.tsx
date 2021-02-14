@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { Platform } from 'react-native'
 
 import PushNotification from 'react-native-push-notification'
+import Toast from 'react-native-toast-message'
 import messaging from '@react-native-firebase/messaging'
 import { NavigationContainer } from '@react-navigation/native'
 
@@ -45,7 +46,30 @@ function App() {
       })
 
       unsubcribeForegroundListener = await messaging().onMessage(async(remoteMessage) => {
-        //Do something...
+        if (Platform.OS == 'android') {
+          PushNotification.localNotification({
+            title: remoteMessage.notification?.title,
+            message: remoteMessage.notification?.body as string,
+            channelId: 'default',
+            playSound: true,
+            soundName: 'default',
+            importance: 'high',
+            priority: 'high',
+            vibrate: true,
+            userInfo: remoteMessage.data,
+            group: 'group',
+            groupSummary: true
+          })
+        } else {
+          Toast.show({
+            text1: remoteMessage.notification?.title,
+            text2: remoteMessage.notification?.body as string,
+            type: 'info',
+            onPress: () => Toast.hide()
+          })
+        }
+
+        //Do something else...
       })
 
       getToken()
@@ -61,9 +85,15 @@ function App() {
   }, [])
 
   return (
-    <NavigationContainer>
-      <StackNavigator />
-    </NavigationContainer>
+    <>
+      <NavigationContainer>
+        <StackNavigator />
+      </NavigationContainer>
+
+      <Toast
+        ref = {ref => Toast.setRef(ref)}
+      />
+    </>
   )
 
   async function getToken() {
