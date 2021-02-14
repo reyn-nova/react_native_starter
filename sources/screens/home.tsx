@@ -39,7 +39,7 @@ function Home(props: PropsType) {
           navigation.push(
             'AnotherScreen',
             {
-              message: "Hello this is message from 'Home'"
+              fromScreen: 'Home'
             }
           )
         }}

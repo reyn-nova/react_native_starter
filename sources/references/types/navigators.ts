@@ -6,6 +6,6 @@ type ScreensList = (
 export type StackNavigatorParametersListType = {
   Home: undefined,
   AnotherScreen: {
-    message?: string
+    fromScreen: ScreensList
   }
 }

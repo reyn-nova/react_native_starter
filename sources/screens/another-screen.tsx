@@ -35,21 +35,9 @@ function AnotherScreen(props: PropsType) {
         Another Screen
       </Text>
 
-      <Text
-        style = {{
-          color: 'gray',
-          fontSize: 20,
-          marginHorizontal: 20,
-          marginTop: 20,
-          textAlign: 'center'
-        }}
-      >
-        Params from previous screen{`\n\nMessage:`} {route.params.message}
-      </Text>
-
       <TouchableOpacity
         activeOpacity = {0.6}
-        onPress = {() => navigation.goBack()}
+        onPress = {() => navigation.navigate(route.params.fromScreen)}
         style = {{
           marginHorizontal: 20,
           marginTop: 20
