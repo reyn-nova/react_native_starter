@@ -13,10 +13,10 @@
 ## Environment
 
 - Visual Studio Code
-- Android Studio <VERSI>
-- XCode <VERSI>
-- JDK <VERSI>
-- Node.JS <VERSI>
+- Android Studio ```<X.Y.Z>```
+- XCode ```<X.Y>```
+- JDK ```<X>```
+- Node.JS ```<X.Y.Z>```
 
 ## Clone Project
 
