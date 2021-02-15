@@ -4,10 +4,10 @@
 ## Environment
 
 - Visual Studio Code
-- Android Studio <X.Y.Z>
-- XCode <X>
-- JDK <X>
-- Node.JS <X.Y.Z>
+- Android Studio <VERSI>
+- XCode <VERSI>
+- JDK <VERSI>
+- Node.JS <VERSI>
 
 #### Clone Project
 
