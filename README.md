@@ -1,3 +1,12 @@
+<p align="center">
+  <img alt="Crocodic" src="./misc/images/crocodic.png" width=300/>
+</p>
+
+<p align="center">
+  <img alt="React Native" src="https://img.shields.io/badge/react_native%20-%2320232a.svg?&style=for-the-badge&logo=react&logoColor=%2361DAFB"/>
+  <img alt="TypeScript" src="https://img.shields.io/badge/typescript%20-%23007ACC.svg?&style=for-the-badge&logo=typescript&logoColor=white"/>
+</p>
+
 # React Native Starter
 
 
@@ -9,7 +18,7 @@
 - JDK <VERSI>
 - Node.JS <VERSI>
 
-#### Clone Project
+## Clone Project
 
 Buka **terminal / cmd**, masuk ke folder yang diinginkan, lalu jalan kan ```git clone <LINK_GIT>```
 
