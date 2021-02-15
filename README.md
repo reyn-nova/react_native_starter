@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="Crocodic" src="./misc/images/crocodic.png" width=300/>
+  <img alt="Crocodic" src="./misc/images/crocodic.png" width=250/>
 </p>
 
 <p align="center">
