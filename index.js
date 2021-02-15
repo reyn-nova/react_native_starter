@@ -4,11 +4,8 @@ import { AppRegistry } from 'react-native'
 import App from './sources/App'
 import { name as appName } from './app.json'
 
-import { OnNotificationTap } from './sources/references/notification-actions'
 import { InitPushNotification } from './sources/helpers/messaging-and-notification'
 
-InitPushNotification({
-  onNotification: notificationData => OnNotificationTap(notificationData)
-})
+InitPushNotification()
 
 AppRegistry.registerComponent(appName, () => App)
