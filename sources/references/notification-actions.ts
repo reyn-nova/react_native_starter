@@ -9,6 +9,9 @@ export function OnGetToken(token: string) {
 }
 
 export function OnMessageReceived(remoteMessage: FirebaseMessagingTypes.RemoteMessage, from: 'Foreground' | 'Background') {
+  // di Android ini dipanggil saat app di background maupun saat killed
+  // di iOS ini dipanggil saat app di background saja namun tidak saat killed
+  
   if (from == 'Foreground') {
     ShowForegroundNotification(remoteMessage)
   }
