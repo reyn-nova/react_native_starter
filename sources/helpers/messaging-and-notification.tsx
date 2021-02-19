@@ -5,24 +5,43 @@ import PushNotification from 'react-native-push-notification'
 import Toast from 'react-native-toast-message'
 import messaging from '@react-native-firebase/messaging'
 
-import { OnGetToken, OnForegroundMessageReceived, OnNotificationTap } from '../references/notification-actions'
+import { OnGetToken, OnMessageReceived, OnNotificationTap } from '../references/notification-actions'
 
-export default class MessageListener extends React.Component {
+type PropsType = {
+  children: React.ReactNode
+}
+
+export default class MessageListener extends React.Component<PropsType> {
   unsubcribeForegroundMessageListener: (() => void) | undefined
 
-  async componentDidMount() {
-    this.unsubcribeForegroundMessageListener = await this.startListeningForegroundMessage()
+  state = {
+    token: undefined as string | undefined
+  }
 
-    const token = await this.getToken()
-    
-    OnGetToken(token)
+  async componentDidMount() {
+    this.getToken().then(token => {
+      this.setState({token})
+
+      OnGetToken(token)
+    })
+
+    this.unsubcribeForegroundMessageListener = await this.startListeningForegroundMessage()
   }
 
   render() {
     return (
-      <Toast
-        ref = {ref => Toast.setRef(ref)}
-      />
+      <>
+        {
+          this.state.token != undefined ?
+            this.props.children
+            :
+            null
+        }
+        
+        <Toast
+          ref = {ref => Toast.setRef(ref)}
+        />
+      </>
     )
   }
 
@@ -45,7 +64,7 @@ export default class MessageListener extends React.Component {
       return
     }
   
-    return await messaging().onMessage(remoteMessage => OnForegroundMessageReceived(remoteMessage))
+    return await messaging().onMessage(remoteMessage => OnMessageReceived(remoteMessage, 'Foreground'))
   }
 
   async getToken() {
@@ -67,6 +86,8 @@ export function InitPushNotification() {
       created => console.log(`createChannel returned '${created}'`)
     )
   }
+
+  messaging().setBackgroundMessageHandler(async(remoteMessage) => OnMessageReceived(remoteMessage, 'Background'))
 
   messaging().onNotificationOpenedApp(remoteMessage => {
     // This called only when tapping iOS notification on background

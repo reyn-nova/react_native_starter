@@ -8,9 +8,11 @@ export function OnGetToken(token: string) {
   console.log(`Token ${Platform.OS}: ${token}`)
 }
 
-export function OnForegroundMessageReceived(remoteMessage: FirebaseMessagingTypes.RemoteMessage) {
-  ShowNotification(remoteMessage)
-}
+export function OnMessageReceived(remoteMessage: FirebaseMessagingTypes.RemoteMessage, from: 'Foreground' | 'Background') {
+  if (from == 'Foreground') {
+    ShowForegroundNotification(remoteMessage)
+  }
+} 
 
 export function OnNotificationTap(notificationData: any) {
   ExecuteNotificationData(notificationData)
@@ -20,7 +22,7 @@ export function ExecuteNotificationData(notificationData: any) {
   Alert.alert('Data', JSON.stringify(notificationData, null, 2))
 }
 
-function ShowNotification(remoteMessage: FirebaseMessagingTypes.RemoteMessage) {
+function ShowForegroundNotification(remoteMessage: FirebaseMessagingTypes.RemoteMessage) {
   const { data, notification } = remoteMessage
   
   if (Platform.OS == 'android') {

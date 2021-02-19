@@ -8,13 +8,11 @@ import StackNavigator from './navigators/stack-navigator'
 
 function App() {
   return (
-    <>
+    <MessageListener>
       <NavigationContainer>
         <StackNavigator />
       </NavigationContainer>
-
-      <MessageListener />
-    </>
+    </MessageListener>
   )
 }
 
