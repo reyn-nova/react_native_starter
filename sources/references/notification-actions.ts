@@ -57,3 +57,17 @@ function ShowForegroundNotification(remoteMessage: FirebaseMessagingTypes.Remote
     })
   }
 }
+
+export function ShowGetTokenFailedAlert(onPress: () => void) {
+  Alert.alert(
+    `Informasi`,
+    `Gagal mendapatkan token`,
+    [
+      {
+        text: `Coba lagi`,
+        style: `default`,
+        onPress
+      }
+    ]
+  )
+}

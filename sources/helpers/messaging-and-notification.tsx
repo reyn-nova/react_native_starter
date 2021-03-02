@@ -5,13 +5,9 @@ import PushNotification from 'react-native-push-notification'
 import Toast from 'react-native-toast-message'
 import messaging from '@react-native-firebase/messaging'
 
-import { OnGetToken, OnMessageReceived, OnNotificationTap } from '../references/notification-actions'
+import { OnGetToken, OnMessageReceived, OnNotificationTap, ShowGetTokenFailedAlert } from '../references/notification-actions'
 
-type PropsType = {
-  children: React.ReactNode
-}
-
-export default class MessageListener extends React.Component<PropsType> {
+export default class MessageListener extends React.Component {
   unsubcribeForegroundMessageListener: (() => void) | undefined
 
   state = {
@@ -19,29 +15,16 @@ export default class MessageListener extends React.Component<PropsType> {
   }
 
   async componentDidMount() {
-    this.getToken().then(token => {
-      this.setState({token})
-
-      OnGetToken(token)
-    })
+    this.getToken()
 
     this.unsubcribeForegroundMessageListener = await this.startListeningForegroundMessage()
   }
 
   render() {
     return (
-      <>
-        {
-          this.state.token != undefined ?
-            this.props.children
-            :
-            null
-        }
-        
-        <Toast
-          ref = {ref => Toast.setRef(ref)}
-        />
-      </>
+      <Toast
+        ref = {ref => Toast.setRef(ref)}
+      />
     )
   }
 
@@ -67,8 +50,17 @@ export default class MessageListener extends React.Component<PropsType> {
     return await messaging().onMessage(remoteMessage => OnMessageReceived(remoteMessage, 'Foreground'))
   }
 
-  async getToken() {
-    return await messaging().getToken()
+  getToken() {
+    messaging().getToken().then(token => {
+      if (token != undefined && token != '') {
+        this.setState({token})
+  
+        OnGetToken(token)
+      } else {
+        ShowGetTokenFailedAlert(this.getToken)
+      }
+    })
+    .catch (err => ShowGetTokenFailedAlert(this.getToken))
   }
 }
 
