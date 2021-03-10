@@ -17,12 +17,12 @@ function StackNavigator() {
       }}
     >
       <Stack.Screen
-        name = 'Home'
+        name = "Home"
         component = {Home}
       />
 
       <Stack.Screen
-        name = 'AnotherScreen'
+        name = "AnotherScreen"
         component = {AnotherScreen}
         options = {{
           ...TransitionPresets.RevealFromBottomAndroid

@@ -4,30 +4,30 @@ import PushNotification from 'react-native-push-notification'
 import Toast from 'react-native-toast-message'
 import { FirebaseMessagingTypes } from '@react-native-firebase/messaging'
 
-export function OnGetToken(token: string) {
+export function onGetToken(token: string) {
   console.log(`Token ${Platform.OS}: ${token}`)
 }
 
-export function OnMessageReceived(remoteMessage: FirebaseMessagingTypes.RemoteMessage, from: 'Foreground' | 'Background') {
+export function onMessageReceived(remoteMessage: FirebaseMessagingTypes.RemoteMessage, from: 'Foreground' | 'Background') {
   // di Android ini dipanggil saat app di background maupun saat killed
   // di iOS ini dipanggil saat app di background saja namun tidak saat killed
-  
-  if (from == 'Foreground') {
-    ShowForegroundNotification(remoteMessage)
-  }
-} 
 
-export function OnNotificationTap(notificationData: any) {
-  ExecuteNotificationData(notificationData)
+  if (from == 'Foreground') {
+    showForegroundNotification(remoteMessage)
+  }
 }
 
-export function ExecuteNotificationData(notificationData: any) {
+export function onNotificationTap(notificationData: any) {
+  executeNotificationData(notificationData)
+}
+
+export function executeNotificationData(notificationData: any) {
   Alert.alert('Data', JSON.stringify(notificationData, null, 2))
 }
 
-function ShowForegroundNotification(remoteMessage: FirebaseMessagingTypes.RemoteMessage) {
+function showForegroundNotification(remoteMessage: FirebaseMessagingTypes.RemoteMessage) {
   const { data, notification } = remoteMessage
-  
+
   if (Platform.OS == 'android') {
     PushNotification.localNotification({
       title: notification?.title,
@@ -50,7 +50,7 @@ function ShowForegroundNotification(remoteMessage: FirebaseMessagingTypes.Remote
       text2: notification?.body as string,
       type: 'info',
       onPress: () => {
-        OnNotificationTap(data)
+        onNotificationTap(data)
 
         Toast.hide()
       }
@@ -58,14 +58,14 @@ function ShowForegroundNotification(remoteMessage: FirebaseMessagingTypes.Remote
   }
 }
 
-export function ShowGetTokenFailedAlert(onPress: () => void) {
+export function showGetTokenFailedAlert(onPress: () => void) {
   Alert.alert(
-    `Informasi`,
-    `Gagal mendapatkan token`,
+    'Informasi',
+    'Gagal mendapatkan token',
     [
       {
-        text: `Coba lagi`,
-        style: `default`,
+        text: 'Coba lagi',
+        style: 'default',
         onPress
       }
     ]
