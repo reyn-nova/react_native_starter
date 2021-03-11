@@ -23,7 +23,7 @@
 Buka **terminal / cmd**, masuk ke folder yang diinginkan, lalu jalan kan ```git clone <LINK_GIT>```
 
 
-## Running & Build
+## Running
 
 
 #### First Time Running
@@ -48,6 +48,23 @@ Buka **terminal / cmd** arahkan posisi folder ke folder project React Native Sta
 
 1. Start React-Native Packager jika belum
 5. Buka jendela **terminal / cmd** lain, arahkan posisi folder ke folder project React Native Starter, jalankan ```npx react-native run-ios```
+
+
+## Set-Up EsLint
+
+EsLint membantu untuk menyatakan peraturan - peraturan penulisan code, ini membuat kode lebih disiplin penulisannya dan lebih konsisten.
+
+Anda dapat mengubah konfigurasi peraturannya di ```.eslintrc.js```, dan agar peraturan EsLint dapat berjalan, anda terlebih dahulu harus menginstall ekstensi [EsLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint).
+
+Setelah terinstal, buka salah satu file javascript atau typescript, lihat di bagian bawah kanan visual studio code terdapat button bertuliskan EsLint, pastikan tercentang yang berarti menandakan bahwa ekstensi EsLint sudah berjalan.
+
+<p align="center">
+  <img alt="Crocodic" src="./misc/images/eslint.jpeg" width=250/>
+</p>
+
+
+## Build
+
 
 #### Build Android APK
 
