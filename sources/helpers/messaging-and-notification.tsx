@@ -75,7 +75,7 @@ export function initPushNotification() {
         importance: 4,
         vibrate: true
       },
-      created => console.log(`createChannel returned '${created}'`)
+      () => {}
     )
   }
 

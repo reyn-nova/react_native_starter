@@ -6,7 +6,7 @@ module.exports = {
     'consistent-this': 'off',
     'eol-last': ['error', 'always'],
     'max-depth': ['error', 3],
-    'max-len': ['error', { 'code': 2000 }],
+    'max-len': ['error', { 'code': 200 }],
     'max-lines': ['error', 2000],
     'no-alert': 'off',
     'no-confusing-arrow': 'error',
