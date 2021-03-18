@@ -6,16 +6,16 @@ module.exports = {
     'consistent-this': 'off',
     'eol-last': ['error', 'always'],
     'max-depth': ['error', 3],
-    'max-len': ['error', { 'code': 175 }],
+    'max-len': ['error', { 'code': 2000 }],
     'max-lines': ['error', 2000],
     'no-alert': 'off',
     'no-confusing-arrow': 'error',
     'no-console': 'warn',
     'no-shadow': 'off',
-    'no-trailing-spaces': ['error', { 'ignoreComments': true }],
+    'no-trailing-spaces': ['warn', { 'ignoreComments': true }],
     'object-shorthand': ['error', 'always'],
     'operator-assignment': ['error', 'always'],
-    'prefer-const': 'error',
+    'prefer-const': 'warn',
     'prettier/prettier': 0,
     'react-native/no-inline-styles': 'off',
     'spaced-comment': ['error', 'always'],
@@ -23,6 +23,7 @@ module.exports = {
     semi: ['error', 'never'],
     quotes: ['warn', 'single'],
     'no-return-assign': 'off',
-    radix: 'off'
+    radix: 'off',
+    '@typescript-eslint/no-unused-vars': 'warn'
   }
-};
+}
