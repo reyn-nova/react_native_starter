@@ -44,7 +44,11 @@ function sendFileViaTelegramBot(filename, filepath) {
   // Group Crocodic | React Native: -439125115
 
   formData.append('chat_id', chat_id)
-  formData.append('caption', 'Build success')
+
+  const buildStartTime = (new Date(require('./references/build-time.json').startTime)).getTime()
+  const buildEndTime = (new Date(require('./references/build-time.json').endTime)).getTime()
+
+  formData.append('caption', `Build success\n\nBuild time: ${((buildEndTime - buildStartTime) / 1000).toFixed(2)}s`)
   formData.append('document', fileBuffer, { filename, knownLength: fs.statSync(filepath).size })
 
   const token = '1685554932:AAEfH8pWySl2mfbgPZnTrkJnAeC1EpN3xwA'
@@ -91,7 +95,7 @@ function sendFileViaTelegramBot(filename, filepath) {
     axios.post(`https://api.telegram.org/bot${token}/editMessageCaption`, {
       chat_id,
       message_id,
-      caption: `${caption}\n\nUpload time: ${time.toFixed(2)}s`
+      caption: `${caption}\nUpload time: ${time.toFixed(2)}s`
     })
     .then(function () {
 
