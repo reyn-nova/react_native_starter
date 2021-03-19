@@ -1,5 +1,6 @@
 const fs = require('fs')
 const path = require('path')
+const open = require('open')
 const { selectedBaseURL } = require('../sources/references/base-url')
 
 const folderPath = path.join(__dirname, '../android/app/build/outputs/apk/release/')
@@ -13,6 +14,8 @@ if (fs.existsSync(originalAPKPath)) {
     if (err) {
       throw err
     }
+
+    open(folderPath)
 
     console.log('APK Renamer: Successfully renamed APK!')
   })
