@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "build-android": "npm run bundle-android && cd android && ./gradlew assemblerelease && cd app/build/outputs/apk/release",
+    "build-android": "npm run bundle-android && cd android && ./gradlew assemblerelease && cd .. && npx ts-node misc/apk-renamer.js",
     "bundle-android": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res",
     "bundle-ios": "react-native bundle --entry-file ./index.js --platform ios --bundle-output ios/main.jsbundle --assets-dest ios",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
