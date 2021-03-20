@@ -58,3 +58,6 @@ buck-out/
 
 # CocoaPods
 /ios/Pods/
+
+misc/references/telegram-credential.json
+misc/references/build-time.json

@@ -1,30 +1,55 @@
 const fs = require('fs')
+const path = require('path')
 const FormData = require('form-data')
 const pretty = require('prettysize')
 
 const { newAPKPath: filepath, newFilename: filename } = require('../references/apk-path')
 
 function sendFileViaTelegramBot() {
+  if (!fs.existsSync(path.join(__dirname, '../references/telegram-credential.json'))) {
+    console.log('Telegram credential is invalid, please configure using npm run deployer')
+
+    return
+  }
+
+  const { token, chat_id } = require('../references/telegram-credential.json')
+
+  if (token == undefined || token == '' || chat_id == undefined || chat_id == '') {
+    console.log('Telegram credential is invalid, please configure using npm run deployer')
+
+    return
+  }
+
+  if (!fs.existsSync(filepath)) {
+    console.log(`Build file of ${filename} not found`)
+
+    return
+  }
+
   console.log('Processing file upload with size ' + pretty(fs.statSync(filepath).size)) + ' file'
 
   const fileBuffer = fs.readFileSync(filepath)
 
   const formData = new FormData()
 
-  const chat_id = 811006569
-
   // Reynald: 811006569
   // Group Crocodic | React Native: -439125115
 
   formData.append('chat_id', chat_id)
 
-  const buildStartTime = (new Date(require('../references/build-time.json').startTime)).getTime()
-  const buildEndTime = (new Date(require('../references/build-time.json').endTime)).getTime()
+  let chatCaption = 'Build success\n'
 
-  formData.append('caption', `Build success\n\nBuild time: ${((buildEndTime - buildStartTime) / 1000).toFixed(2)}s`)
+  if (fs.existsSync(path.join(__dirname, '../references/build-time.json'))) {
+    if (require('../references/build-time.json').startTime != '' && require('../references/build-time.json').endTime != '') {
+      const buildStartTime = (new Date(require('../references/build-time.json').startTime)).getTime()
+      const buildEndTime = (new Date(require('../references/build-time.json').endTime)).getTime()
+
+      chatCaption += `\nBuild time: ${((buildEndTime - buildStartTime) / 1000).toFixed(2)}s`
+    }
+  }
+
+  formData.append('caption', `${chatCaption}`)
   formData.append('document', fileBuffer, { filename, knownLength: fs.statSync(filepath).size })
-
-  const token = '1685554932:AAEfH8pWySl2mfbgPZnTrkJnAeC1EpN3xwA'
 
   const loading =  require('loading-cli')
 
@@ -62,7 +87,7 @@ function sendFileViaTelegramBot() {
     formData
   )
   .then(response => {
-    const { message_id, caption } = response.data.result
+    const { message_id } = response.data.result
     isDone = true
 
     const time = ((new Date()).getTime() - startTime.getTime()) / 1000
@@ -70,7 +95,7 @@ function sendFileViaTelegramBot() {
     axios.post(`https://api.telegram.org/bot${token}/editMessageCaption`, {
       chat_id,
       message_id,
-      caption: `${caption}\nUpload time: ${time.toFixed(2)}s`
+      caption: `${chatCaption}\nUpload time: ${time.toFixed(2)}s`
     })
     .then(function () {
 

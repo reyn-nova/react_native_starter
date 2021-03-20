@@ -3,10 +3,13 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "build-android": "node misc/record-start-time.js; npm run bundle-android; cd android; ./gradlew assemblerelease; cd ..; node misc/record-end-time.js; npx ts-node misc/apk-renamer/index.js; npx ts-node misc/send-file-via-telegram-bot/index.js",
+    "build-android": "node misc/record-start-time.js; npm run bundle-android; cd android; ./gradlew assemblerelease; cd ..; node misc/record-end-time.js; npx ts-node misc/apk-renamer/index.js; node misc/open-file-location.js",
+    "build-android-without-open-file-location": "node misc/record-start-time.js; npm run bundle-android; cd android; ./gradlew assemblerelease; cd ..; node misc/record-end-time.js; npx ts-node misc/apk-renamer/index.js",
     "bundle-android": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res",
     "bundle-ios": "react-native bundle --entry-file ./index.js --platform ios --bundle-output ios/main.jsbundle --assets-dest ios",
+    "deployer": "npx ts-node misc/deployer.js",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "send-file-via-telegram-bot": "npx ts-node misc/send-file-via-telegram-bot/index.js; node misc/open-file-location.js",
     "start": "npx react-native start",
     "test": "jest"
   },
