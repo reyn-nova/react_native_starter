@@ -2,6 +2,8 @@ const fs = require('fs')
 const path = require('path')
 const FormData = require('form-data')
 const pretty = require('prettysize')
+const userName = require('git-user-name')
+const wifiName = require('wifi-name')
 
 const { newAPKPath: filepath, newFilename: filename } = require('../references/apk-path')
 
@@ -32,12 +34,9 @@ function sendFileViaTelegramBot() {
 
   const formData = new FormData()
 
-  // Reynald: 811006569
-  // Group Crocodic | React Native: -439125115
-
   formData.append('chat_id', chat_id)
 
-  let chatCaption = 'Build success\n'
+  let chatCaption = `Build success by <pre>${userName() || '<Unknown>'}</pre>\n`
 
   if (fs.existsSync(path.join(__dirname, '../references/build-time.json'))) {
     if (require('../references/build-time.json').startTime != '' && require('../references/build-time.json').endTime != '') {
@@ -49,6 +48,7 @@ function sendFileViaTelegramBot() {
   }
 
   formData.append('caption', `${chatCaption}`)
+  formData.append('parse_mode', 'HTML')
   formData.append('document', fileBuffer, { filename, knownLength: fs.statSync(filepath).size })
 
   const loading =  require('loading-cli')
@@ -86,16 +86,19 @@ function sendFileViaTelegramBot() {
     `https://api.telegram.org/bot${token}/sendDocument`,
     formData
   )
-  .then(response => {
+  .then(async(response) => {
     const { message_id } = response.data.result
     isDone = true
 
     const time = ((new Date()).getTime() - startTime.getTime()) / 1000
 
+    const wifi_name = await wifiName()
+
     axios.post(`https://api.telegram.org/bot${token}/editMessageCaption`, {
       chat_id,
+      parse_mode: 'HTML',
       message_id,
-      caption: `${chatCaption}\nUpload time: ${time.toFixed(2)}s`
+      caption: `${chatCaption}\nUpload time: ${time.toFixed(2)}s ${wifi_name != undefined ? `(WiFi: <b>${wifi_name}</b>)` : ''}`
     })
     .then(function () {
 
