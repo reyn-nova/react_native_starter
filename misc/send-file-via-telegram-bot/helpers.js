@@ -1,52 +1,25 @@
 const fs = require('fs')
-const path = require('path')
-// const open = require('open')
+const FormData = require('form-data')
 const pretty = require('prettysize')
-const { selectedBaseURL } = require('../sources/references/base-url')
-const { default: axios } = require('axios')
 
-const folderPath = path.join(__dirname, '../android/app/build/outputs/apk/release/')
+const { newAPKPath: filepath, newFilename: filename } = require('../references/apk-path')
 
-const originalAPKPath = folderPath + 'app-release.apk'
+function sendFileViaTelegramBot() {
+  console.log('Processing file upload with size ' + pretty(fs.statSync(filepath).size)) + ' file'
 
-if (fs.existsSync(originalAPKPath)) {
-  const newFilename = require('../package.json').name + '-v' + require('../package.json').version + '-' + selectedBaseURL + '.apk'
-
-  const newAPKPath = folderPath + newFilename
-
-  fs.rename(originalAPKPath, newAPKPath, function (err) {
-    if (err) {
-      throw err
-    }
-
-    console.log('APK Handler: Successfully renamed APK!')
-
-    // open(newAPKPath) // Need testing this
-
-    console.log('Processing file upload with size ' + pretty(fs.statSync(newAPKPath).size)) + ' file'
-
-    sendFileViaTelegramBot(newFilename, newAPKPath)
-  })
-} else {
-  console.log('APK Handler: Path file to ' + originalAPKPath + ' not found')
-}
-
-function sendFileViaTelegramBot(filename, filepath) {
   const fileBuffer = fs.readFileSync(filepath)
-
-  const FormData = require('form-data')
 
   const formData = new FormData()
 
-  const chat_id = -439125115
+  const chat_id = 811006569
 
   // Reynald: 811006569
   // Group Crocodic | React Native: -439125115
 
   formData.append('chat_id', chat_id)
 
-  const buildStartTime = (new Date(require('./references/build-time.json').startTime)).getTime()
-  const buildEndTime = (new Date(require('./references/build-time.json').endTime)).getTime()
+  const buildStartTime = (new Date(require('../references/build-time.json').startTime)).getTime()
+  const buildEndTime = (new Date(require('../references/build-time.json').endTime)).getTime()
 
   formData.append('caption', `Build success\n\nBuild time: ${((buildEndTime - buildStartTime) / 1000).toFixed(2)}s`)
   formData.append('document', fileBuffer, { filename, knownLength: fs.statSync(filepath).size })
@@ -77,6 +50,8 @@ function sendFileViaTelegramBot(filename, filepath) {
   }
 
   counting()
+
+  const { default: axios } = require('axios')
 
   axios.create({
     headers: formData.getHeaders(),
@@ -109,4 +84,8 @@ function sendFileViaTelegramBot(filename, filepath) {
 
     throw err
   })
+}
+
+module.exports = {
+  sendFileViaTelegramBot
 }
