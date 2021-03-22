@@ -4,6 +4,7 @@ import { Alert, Image, SafeAreaView, Text, TouchableOpacity } from 'react-native
 import { StackNavigationProp } from '@react-navigation/stack'
 import ImagePicker from 'react-native-image-crop-picker'
 import { StackNavigatorParameters } from '../types/navigators'
+import { Sentence } from '../constants/sentence'
 
 type Props = {
   navigation: StackNavigationProp<StackNavigatorParameters, 'Home'>
@@ -112,7 +113,7 @@ function Home(props: Props) {
           right: 20
         }}
       >
-        Build with ❤️ by Crocodic React Native Team
+        {Sentence.starterWatermark}
       </Text>
 
     </SafeAreaView>

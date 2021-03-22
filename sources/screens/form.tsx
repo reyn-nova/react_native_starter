@@ -8,6 +8,7 @@ import { Font } from '../constants/font'
 import { Color } from '../constants/color'
 import LoadingIndicator from '../custom-components/loading-indicator'
 import { showSnackbar } from '../custom-components/snackbar'
+import { Sentence } from '../constants/sentence'
 
 type PropsType = {
   navigation: StackNavigationProp<StackNavigatorParameters, 'Form'>
@@ -62,7 +63,7 @@ function Form(props: PropsType) {
             marginTop: 44
             // fontFamily: Font.interSemiBold
           }}
-        >Username
+        >{Sentence.username}
         </Text>
 
         <TextInput
@@ -93,7 +94,7 @@ function Form(props: PropsType) {
             refPasswordInput.current?.focus()
           }}
           maxLength={8}
-          placeholder="Ketik di sini"
+          placeholder={Sentence.placeholderText}
           returnKeyType="next"
           value={username}
         />
@@ -105,7 +106,7 @@ function Form(props: PropsType) {
             marginTop: 16
             // fontFamily: Font.interSemiBold
           }}
-        >Password
+        >{Sentence.password}
         </Text>
 
         <TextInput
@@ -136,7 +137,7 @@ function Form(props: PropsType) {
             console.log('onSubmitEditing')
           }}
           keyboardType="numeric"
-          placeholder="Ketik di sini"
+          placeholder={Sentence.placeholderText}
           returnKeyType="done"
           value={password}
         />
