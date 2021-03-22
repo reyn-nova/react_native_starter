@@ -8,7 +8,13 @@
     "bundle-ios": "react-native bundle --entry-file ./index.js --platform ios --bundle-output ios/main.jsbundle --assets-dest ios",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "start": "npx react-native start",
-    "test": "jest"
+    "test": "jest",
+    "ra": "react-native run-android",
+    "ris": "react-native run-ios --simulator ",
+    "rid": "react-native run-ios --device ",
+    "ios-devices": "xcrun simctl list devices",
+    "pi": "cd ios; pod install; cd ..",
+    "gradle-clean": "cd android; ./gradlew clean; cd .."
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "1.14.1",
@@ -22,10 +28,12 @@
     "react": "16.13.1",
     "react-native": "0.63.4",
     "react-native-gesture-handler": "1.10.3",
+    "react-native-image-crop-picker": "^0.36.0",
     "react-native-push-notification": "7.2.2",
     "react-native-reanimated": "1.13.2",
     "react-native-safe-area-context": "3.2.0",
     "react-native-screens": "2.18.1",
+    "react-native-snackbar": "^2.4.0",
     "react-native-toast-message": "1.4.9"
   },
   "devDependencies": {

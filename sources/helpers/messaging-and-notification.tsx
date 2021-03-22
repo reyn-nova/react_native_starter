@@ -5,7 +5,7 @@ import PushNotification from 'react-native-push-notification'
 import Toast from 'react-native-toast-message'
 import messaging from '@react-native-firebase/messaging'
 
-import { onGetToken, onMessageReceived, onNotificationTap, showGetTokenFailedAlert } from '../references/notification-actions'
+import { onGetToken, onMessageReceived, onNotificationTap, showGetTokenFailedAlert } from './notification-actions'
 
 export default class MessageListener extends React.Component {
   unsubcribeForegroundMessageListener: (() => void) | undefined
