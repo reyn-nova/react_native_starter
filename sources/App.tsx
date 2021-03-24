@@ -1,7 +1,7 @@
 
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
-import MessageListener from './references/messaging-and-notification'
+import MessageListener from './helpers/messaging-and-notification'
 import StackNavigator from './navigators/stack-navigator'
 
 function App() {
