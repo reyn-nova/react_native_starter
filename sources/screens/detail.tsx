@@ -3,7 +3,7 @@ import { RouteProp } from '@react-navigation/core'
 import { StackNavigationProp } from '@react-navigation/stack'
 import React from 'react'
 import { SafeAreaView, Text, TouchableOpacity, useWindowDimensions } from 'react-native'
-import { StackNavigatorParameters } from '../types/navigators'
+import { StackNavigatorParameters } from '../references/types/navigators'
 
 type Props = {
   navigation: StackNavigationProp<StackNavigatorParameters, 'Detail'>

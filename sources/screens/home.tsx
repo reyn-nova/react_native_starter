@@ -3,8 +3,8 @@ import React, { useState } from 'react'
 import { Alert, Image, SafeAreaView, Text, TouchableOpacity } from 'react-native'
 import { StackNavigationProp } from '@react-navigation/stack'
 import ImagePicker from 'react-native-image-crop-picker'
-import { StackNavigatorParameters } from '../types/navigators'
-import { Sentence } from '../constants/sentence'
+import { StackNavigatorParameters } from '../references/types/navigators'
+import { Sentence } from '../references/constants/sentence'
 
 type Props = {
   navigation: StackNavigationProp<StackNavigatorParameters, 'Home'>
@@ -87,7 +87,7 @@ function Home(props: Props) {
 
       <Image
         source={pickedImage == '' ?
-          require('../../assets/images/man_portrait.jpg')
+          require('../../support-files/images/man_portrait.jpg')
           :
           { uri: pickedImage }
         }

@@ -1,7 +1,7 @@
 
 import React from 'react'
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack'
-import { StackNavigatorParameters } from '../types/navigators'
+import { StackNavigatorParameters } from '../references/types/navigators'
 import Home from '../screens/home'
 import Detail from '../screens/detail'
 
