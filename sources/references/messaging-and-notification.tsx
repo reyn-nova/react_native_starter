@@ -5,10 +5,10 @@ import PushNotification from 'react-native-push-notification'
 import Toast from 'react-native-toast-message'
 import messaging from '@react-native-firebase/messaging'
 
-import { onGetToken, onMessageReceived, onNotificationTap, showGetTokenFailedAlert } from './notification-actions'
+import { onGetToken, onMessageReceived, onNotificationTap, showGetTokenFailedAlert } from '../helpers/notification-actions'
 
 export default class MessageListener extends React.Component {
-  unsubcribeForegroundMessageListener: (() => void) | undefined
+  unsubscribeForegroundMessageListener: (() => void) | undefined
 
   state = {
     token: undefined as string | undefined
@@ -17,7 +17,7 @@ export default class MessageListener extends React.Component {
   async componentDidMount() {
     this.getToken()
 
-    this.unsubcribeForegroundMessageListener = await this.startListeningForegroundMessage()
+    this.unsubscribeForegroundMessageListener = await this.startListeningForegroundMessage()
   }
 
   render() {
@@ -29,8 +29,8 @@ export default class MessageListener extends React.Component {
   }
 
   componentWillUnmount() {
-    if (this.unsubcribeForegroundMessageListener != undefined) {
-      this.unsubcribeForegroundMessageListener()
+    if (this.unsubscribeForegroundMessageListener != undefined) {
+      this.unsubscribeForegroundMessageListener()
     }
   }
 

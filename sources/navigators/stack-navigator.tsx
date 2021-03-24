@@ -3,10 +3,7 @@ import React from 'react'
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack'
 import { StackNavigatorParameters } from '../types/navigators'
 import Home from '../screens/home'
-import Form from '../screens/form'
-import { Color } from '../constants/color'
-import { View } from 'react-native'
-import MainMenu from '../screens/main-menu'
+import Detail from '../screens/detail'
 
 const Stack = createStackNavigator<StackNavigatorParameters>()
 
@@ -28,21 +25,8 @@ function StackNavigator() {
       />
 
       <Stack.Screen
-        name="Form"
-        component={Form}
-        options={{
-          ...TransitionPresets.SlideFromRightIOS,
-          headerTitleAlign: 'center',
-          headerBackTitleVisible: false,
-          headerStyle: {
-            backgroundColor: 'skyblue'
-          }
-        }}
-      />
-
-      <Stack.Screen
-        name="MainMenu"
-        component={MainMenu}
+        name="Detail"
+        component={Detail}
         options={{
           ...TransitionPresets.SlideFromRightIOS,
           headerTitleAlign: 'center',

@@ -10,8 +10,6 @@
     "start": "npx react-native start",
     "test": "jest",
     "ra": "react-native run-android",
-    "ris": "react-native run-ios --simulator ",
-    "rid": "react-native run-ios --device ",
     "ios-devices": "xcrun simctl list devices",
     "pi": "cd ios; pod install; cd ..",
     "gradle-clean": "cd android; ./gradlew clean; cd .."

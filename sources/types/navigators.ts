@@ -1,8 +1,7 @@
 
 export type StackNavigatorParameters = {
   Home: undefined
-  Form: {
+  Detail: {
     fromScreen: keyof StackNavigatorParameters
   }
-  MainMenu: undefined
 }

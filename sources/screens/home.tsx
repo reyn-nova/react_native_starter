@@ -27,7 +27,7 @@ function Home(props: Props) {
         activeOpacity={0.6}
         onPress={() => {
           navigation.push(
-            'Form',
+            'Detail',
             {
               fromScreen: 'Home'
             }
@@ -46,7 +46,7 @@ function Home(props: Props) {
             textDecorationLine: 'underline'
           }}
         >
-          Forms Screen
+          Detail
         </Text>
 
       </TouchableOpacity>
