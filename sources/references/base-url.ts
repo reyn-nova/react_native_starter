@@ -4,6 +4,6 @@ const baseURLs = {
   live: 'http://live.api.com'
 }
 
-export const selectedBaseURL = <keyof typeof baseURLs>('dev1') // Change the selected base url string here
+export const selectedBaseURL: keyof typeof baseURLs = 'dev1' // Change the selected base url string here
 
 export default baseURLs[selectedBaseURL]
