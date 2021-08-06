@@ -4,7 +4,9 @@ import { Alert, Image, SafeAreaView, Text, TouchableOpacity, View } from 'react-
 
 import ImagePicker from 'react-native-image-crop-picker'
 
-function PickImage() {
+import { StackScreenPropsType } from '../references/types/navigators'
+
+function PickImage({ navigation, route }: StackScreenPropsType<'PickImage'>) {
   const [ pickedImage, setPickedImage ] = useState('')
 
   const imageSize = 175

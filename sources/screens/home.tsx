@@ -2,18 +2,10 @@
 import React from 'react'
 import { SafeAreaView, Text, TouchableOpacity, View } from 'react-native'
 
-import { StackNavigationProp } from '@react-navigation/stack'
-
 import { Sentence } from '../references/constants/sentence'
-import { StackNavigatorParameters } from '../references/types/navigators'
+import { StackScreenPropsType } from '../references/types/navigators'
 
-type PropsType = {
-  navigation: StackNavigationProp<StackNavigatorParameters, 'Home'>
-}
-
-function Home(props: PropsType) {
-  const { navigation } = props
-
+function Home({ navigation, route }: StackScreenPropsType<'Home'>) {
   return (
     <SafeAreaView
       style={{

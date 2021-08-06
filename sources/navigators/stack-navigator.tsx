@@ -2,18 +2,17 @@
 import React from 'react'
 
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack'
-import { StackNavigatorParameters } from '../references/types/navigators'
+import { NavigatorParameters } from '../references/types/navigators'
 
 import Home from '../screens/home'
 import PickImage from '../screens/pick-image'
 
-const Stack = createStackNavigator<StackNavigatorParameters>()
+const Stack = createStackNavigator<NavigatorParameters>()
 
 function StackNavigator() {
   return (
     <Stack.Navigator
-      initialRouteName="Home"
-      screenOptions={{
+      screenOptions = {{
         headerShown: true, // false to remove header
         gestureEnabled: true // default true for ios, false for android
       }}
