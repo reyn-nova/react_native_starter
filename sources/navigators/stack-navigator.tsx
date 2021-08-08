@@ -2,10 +2,10 @@
 import React from 'react'
 
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack'
-import { NavigatorParameters } from '../references/types/navigators'
+import { NavigatorParameters } from '@models/navigators'
 
-import Home from '../screens/home'
-import PickImage from '../screens/pick-image'
+import Home from '@screens/home'
+import PickImage from '@screens/pick-image'
 
 const Stack = createStackNavigator<NavigatorParameters>()
 

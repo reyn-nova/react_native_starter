@@ -1,6 +1,6 @@
-
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { LocalStorage } from '../references/types/local-storage'
+
+import { LocalStorage } from '@models/local-storage'
 
 type LocalStorageValue<T> = {
   [K in keyof T]: T[K] extends keyof LocalStorage ? LocalStorage[T[K]] : never;
