@@ -7,6 +7,7 @@
     "bundle-android": "npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res",
     "bundle-ios": "npx react-native bundle --entry-file ./index.js --platform ios --bundle-output ios/main.jsbundle --assets-dest ios",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint-fix": "npm run lint -- --fix",
     "start": "npx react-native start",
     "test": "jest"
   },
@@ -30,7 +31,7 @@
     "react-native-screens": "2.18.1",
     "react-native-snackbar": "2.4.0",
     "react-native-toast-message": "1.4.9",
-    "react-native-webview": "11.3.2"
+    "react-native-webview": "11.6.6"
   },
   "devDependencies": {
     "@babel/core": "7.8.4",
@@ -39,9 +40,13 @@
     "@types/jest": "25.2.3",
     "@types/react-native": "0.63.51",
     "@types/react-test-renderer": "16.9.2",
+    "@typescript-eslint/eslint-plugin": "4.29.0",
     "babel-jest": "25.1.0",
     "babel-plugin-module-resolver": "4.1.0",
     "eslint": "7.21.0",
+    "eslint-plugin-react": "7.24.0",
+    "eslint-plugin-react-hooks": "4.2.0",
+    "eslint-plugin-react-native": "3.11.0",
     "jest": "25.1.0",
     "metro-react-native-babel-preset": "0.59.0",
     "open": "8.0.3",
