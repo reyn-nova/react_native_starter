@@ -88,11 +88,5 @@ export function initPushNotification() {
       onNotificationTap(remoteMessage.data)
     }
   })
-
-  PushNotification.configure({
-    // This called anytime, except when tapping iOS notification on background
-
-    onNotification: notification => onNotificationTap(notification.data)
-  })
 }
 

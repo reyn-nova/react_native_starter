@@ -1,12 +1,24 @@
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import { SafeAreaView, Text, TouchableOpacity, View } from 'react-native'
+
+import messaging from '@react-native-firebase/messaging'
 
 import { StackScreenPropsType } from '@models/navigators'
 
+import { executeNotificationData } from '@references/functions/notification-actions'
 import { Sentence } from '@references/constants/sentence'
 
 function Home({ navigation, route }: StackScreenPropsType<'Home'>) {
+  useEffect(() => {
+    messaging().getInitialNotification()
+    .then(remoteMessage => {
+      if (remoteMessage) {
+        executeNotificationData(remoteMessage.data)
+      }
+    })
+  }, [])
+
   return (
     <SafeAreaView
       style={{
