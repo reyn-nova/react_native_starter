@@ -129,7 +129,6 @@ function PickImage({ navigation, route }: StackScreenPropsType<'PickImage'>) {
       compressImageQuality: 0.8,
       cropperCancelText: 'Batal',
       cropperChooseText: 'Terapkan',
-      cropping: true,
       height: 500,
       multiple: false,  // default: false
       width: 500
@@ -141,7 +140,6 @@ function PickImage({ navigation, route }: StackScreenPropsType<'PickImage'>) {
       compressImageQuality: 0.8,
       cropperCancelText: 'Batal',
       cropperChooseText: 'Terapkan',
-      cropping: true,
       height: 500,
       width: 500
     }).then(image => setPickedImage(image.path))
