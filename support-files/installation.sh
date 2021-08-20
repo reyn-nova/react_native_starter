@@ -21,7 +21,7 @@ git clone https://github.com/react-crocodic/react_native_starter.git $1;
 cd $1;
 rm -rf .git;
 git init;
-npm i;
+npm i -f;
 node support-files/patch-react-gradle.js
 node support-files/pod-repo-update.js;
 node support-files/write-environment-info.js;
@@ -38,7 +38,7 @@ node support-files/rename-ios-bundle-id.js $2;
 node support-files/change-package-name-reference.js $2;
 node support-files/rename-readme-title.js $1;
 npx react-native-rename "$1" -b $2;
-npm i;
+npm i -f;
 node support-files/pod-install.js;
 node support-files/submit-rename-app-commit.js;
 
