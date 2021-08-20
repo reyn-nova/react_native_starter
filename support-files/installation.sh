@@ -42,4 +42,7 @@ npm i;
 node support-files/pod-install.js;
 node support-files/submit-rename-app-commit.js;
 
+git remote add core https://github.com/react-crocodic/react_native_starter.git;
+git fetch core;
+
 echo "Proses clone project '$1' sudah selesai, buka folder '$1' anda selanjutnya masih perlu mengatur credential google firebase di android & iOS";

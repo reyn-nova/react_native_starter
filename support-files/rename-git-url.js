@@ -16,7 +16,7 @@ if (newURL) {
       throw err
     }
 
-    const result = data.replace(repoName, newRepoName)
+    const result = data.replace(new RegExp(repoName, 'g'), newRepoName)
 
     fs.writeFile(installationFilePath, result, 'utf8', function (err) {
        if (err) {
