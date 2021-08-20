@@ -60,8 +60,11 @@ buck-out/
 
 # CocoaPods
 /ios/Pods/
+/ios/Podfile.lock
 
 *google-services.json
 *GoogleService-Info.plist
 
 support-files/references/build-time.json
+
+package-lock.json
