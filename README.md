@@ -18,7 +18,7 @@ Lihat [Environment Used](./ENVIRONMENT_USED.md).
 
 Buka terminal / cmd, masuk ke folder yang ingin Anda tuju, lalu jalan kan
 
-```bash <(curl -s https://raw.githubusercontent.com/react-crocodic/react_native_starter/master/support-files/installation.sh) NamaApp com.nama.app https://github.com/ACCOUNT/REPO.git```
+```bash <(curl -s https://raw.githubusercontent.com/nald-dev/react_native_starter/master/support-files/installation.sh) NamaApp com.nama.app https://github.com/ACCOUNT/REPO.git```
 
 ## Running
 
