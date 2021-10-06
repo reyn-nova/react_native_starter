@@ -5,5 +5,5 @@ if (require('os').platform() == 'darwin') {
 
   const podInstallProcess = spawn('pod', ['install'], {stdio: 'inherit'})
 
-  podInstallProcess.on('exit', () => process.chdir('../'))
+  podInstallProcess.on('exit', () => process.chdir('../')) 
 }

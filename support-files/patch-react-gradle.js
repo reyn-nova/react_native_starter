@@ -3,7 +3,7 @@ const path = require('path')
 
 const filePath = path.join(__dirname, '../node_modules/react-native/react.gradle')
 
-const data = fs.readFileSync(filePath).toString().split('\n')
+const data = fs.readFileSync(filePath).toString().split('\n') 
 
 data.splice(
   149,
