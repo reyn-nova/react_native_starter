@@ -1,7 +1,5 @@
 {
     "editor.tabSize": 2,
     "eslint.alwaysShowStatus": true,
-    "typescript.tsdk": "node_modules/typescript/lib",
-    "files.autoSave": "afterDelay",
-    "files.autoSaveDelay": 3000
+    "typescript.tsdk": "node_modules/typescript/lib"
 }
